@@ -1,12 +1,18 @@
 # David's dotfiles
 
-[Mathias' Readme](https://github.com/mathiasbynens/dotfiles/) is awesome. go read it.
+The use of this repo is mainly as a backup of my dotfiles for myself and to provide a headless installation of my dev environment on any future machine I might work with.
 
-Mathias' is the project to fork. In addition I took a few things from [Paul Irish's fork](https://github.com/paulirish/dotfiles/) of Mathias' repo.
+It's orginially forked from [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles/) and in addition I took a couple of things from [Paul Irish's fork](https://github.com/paulirish/dotfiles/) of Mathias' repo.
 
-<!-- ## install the necessary apps
+Mathias' is the repo to fork, though. 
 
-My basic setup is captured in `install-deps.sh` which adds homebrew, z, nave, etc. -->
+## Install the necessary apps
+
+My basic setup is captured in `setup.sh` which adds homebrew, z, nvm, node, npm, rvm, ruby etc.
+
+Before running `setup.sh`, make sure to install Apple’s Xcode Command Line Tools to get the correct C language compiler for installing RVM.
+
+Upshot: Upgrade Mac OS X. Install Apple’s Xcode Command Line Tools. Then use RVM to install Ruby.
 
 <!-- ## private config
 
