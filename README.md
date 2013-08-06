@@ -12,9 +12,7 @@ My basic setup is captured in `setup.sh` which adds homebrew, z, nvm, node, npm,
 
 Before running `setup.sh`, make sure to install Apple’s Xcode Command Line Tools to get the correct C language compiler for installing RVM.
 
-Upshot: Upgrade Mac OS X. Install Apple’s Xcode Command Line Tools. Then use RVM to install Ruby.
-
-## private config
+## Private config
 
 Put any private configuration into a file called `.extra` which you do not commit to this repo and just keep in your `~/`
 
@@ -23,7 +21,7 @@ Put any private configuration into a file called `.extra` which you do not commi
 Install [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2) via [Sublime Text 2 Package Control](http://wbond.net/sublime_packages/package_control)
 
 
-### Sensible OS X defaults
+## Sensible OS X defaults
 
 When setting up a new Mac, you may want to set some sensible OS X defaults:
 
