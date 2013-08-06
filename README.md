@@ -14,9 +14,9 @@ Before running `setup.sh`, make sure to install Apple’s Xcode Command Line Too
 
 Upshot: Upgrade Mac OS X. Install Apple’s Xcode Command Line Tools. Then use RVM to install Ruby.
 
-<!-- ## private config
+## private config
 
-Toss it into a file called `.extra` which you do not commit to this repo and just keep in your `~/`
+Put any private configuration into a file called `.extra` which you do not commit to this repo and just keep in your `~/`
 
 I do something nice with my `PATH` there:
 
@@ -30,11 +30,9 @@ PATH=$PATH:~/code/git-friendly
 # ...
 
 export PATH
-``` -->
+```
 
-## Syntax highlighting
-
-…is really important. even for these files.
+## Syntax highlighting for dotfiles
 
 Install [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2) via [Sublime Text 2 Package Control](http://wbond.net/sublime_packages/package_control)
 
@@ -52,13 +50,13 @@ When setting up a new Mac, you may want to set some sensible OS X defaults:
 I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/master/.jshintrc) and [`.editorconfig`](http://editorconfig.org/) defined for all your projects.
  -->
 
-## overview of files
+## Overview of files
 
 ####  Automatic config
 <!-- * `.ackrc` - for ack (better than grep) -->
 * `.vimrc`, `.vim` - vim config, obv.
 
-#### shell environment
+#### Shell environment
 * `.aliases`
 * `.bash_profile`
 * `.bash_prompt`
@@ -67,8 +65,8 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 * `.functions`
 * `.extra` - not included, explained above
 
-#### manual run
-* `install-deps.sh` - random apps i need installed
+#### Manual run
+* `setup.sh` - basic setup, explained above
 * `.osx` - run on a fresh osx machine
 * `.brew` - homebrew initialization
 
