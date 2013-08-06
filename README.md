@@ -18,20 +18,6 @@ Upshot: Upgrade Mac OS X. Install Apple’s Xcode Command Line Tools. Then use R
 
 Put any private configuration into a file called `.extra` which you do not commit to this repo and just keep in your `~/`
 
-I do something nice with my `PATH` there:
-
-```shell
-# PATH like a bawss
-      PATH=/opt/local/bin
-PATH=$PATH:/opt/local/sbin
-PATH=$PATH:/bin
-PATH=$PATH:~/.rvm/bin
-PATH=$PATH:~/code/git-friendly
-# ...
-
-export PATH
-```
-
 ## Syntax highlighting for dotfiles
 
 Install [Dotfiles Syntax Highlighting](https://github.com/mattbanks/dotfiles-syntax-highlighting-st2) via [Sublime Text 2 Package Control](http://wbond.net/sublime_packages/package_control)
