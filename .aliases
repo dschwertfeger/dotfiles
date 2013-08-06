@@ -7,7 +7,7 @@ alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
 # Shortcuts
-alias d="cd ~/Documents/Dropbox"
+alias d="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 alias p="cd ~/Projects"
@@ -139,3 +139,7 @@ command -v grunt > /dev/null && alias grunt="grunt --stack"
 alias stfu="osascript -e 'set volume output muted true'"
 alias pumpitup="osascript -e 'set volume 7'"
 alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
+
+
+# set th wildau proxy for bash sessions
+alias thproxy="export http_proxy='http://proxy.th-wildau.de:8080' \n export https_proxy='http://proxy.th-wildau.de:8080'"
