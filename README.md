@@ -1,6 +1,6 @@
 # David's dotfiles
 
-The use of this repo is mainly as a backup of my dotfiles for myself and to provide a headless installation of my dev environment on any future machine I might work with.
+The use of this repo is mainly as a backup of my dotfiles for myself and to provide documentation and a headless installation of my development environment.
 
 It's orginially forked from [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles/) and in addition I took a couple of things from [Paul Irish's fork](https://github.com/paulirish/dotfiles/) of Mathias' repo.
 
