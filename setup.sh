@@ -9,8 +9,8 @@ chmod +x .brew
 echo "Installing nvm…"
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 echo "Installing node v0.11.x"
-nvm install 0.11
-nvm alias default 0.11
+nvm install 0.10
+nvm alias default 0.10
 echo "node and npm installed"
 echo "To see what versions are available to install: `nvm ls-remote`"
 echo "installing coffee-script"
