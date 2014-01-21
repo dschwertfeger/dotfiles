@@ -2,6 +2,9 @@
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
+# load content of .pythonrc into the PYTHONSTARTUP environment variable
+export PYTHONSTARTUP=~/.pythonrc
+
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
