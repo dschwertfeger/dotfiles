@@ -143,3 +143,7 @@ alias hax="growlnotify -a 'Activity Monitor' 'System error' -m 'WTF R U DOIN'"
 
 # set th wildau proxy for bash sessions
 alias thproxy="export http_proxy='http://proxy.th-wildau.de:8080' \n export https_proxy='http://proxy.th-wildau.de:8080'"
+
+# open chrome with proxy settings in wildau
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server='proxy.th-wildau.de:8080'" 
+# alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --proxy-server='proxy.th-wildau.de:8080' --proxy-bypass-list='*.local; 169.254/16; vpn.th-wildau.de; vpn.tfh-wilau.de; 127.0.0.1'" 

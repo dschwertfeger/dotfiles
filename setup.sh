@@ -1,6 +1,6 @@
 # homebrew!
 echo "Installing homebrew…"
-ruby -e "$(curl -fsSkL https://raw.github.com/mxcl/homebrew/go)"
+ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
 chmod +x .brew 
 ./.brew
 
@@ -8,7 +8,8 @@ chmod +x .brew
 # nvm, node, npm
 echo "Installing nvm…"
 curl https://raw.github.com/creationix/nvm/master/install.sh | sh
-echo "Installing node v0.11.x"
+source ~/.bashrc
+echo "Installing node v0.10.x"
 nvm install 0.10
 nvm alias default 0.10
 echo "node and npm installed"
