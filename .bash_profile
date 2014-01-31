@@ -22,6 +22,9 @@ source ~/.rvm/scripts/rvm
 # init nvm
 source ~/.nvm/nvm.sh
 
+# init virtualenvwrapper
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
 
