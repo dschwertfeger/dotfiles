@@ -125,14 +125,27 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 
 ################################################################################
-### Install python environment
+### Install python stuff
 
 pip install virtualenv
 pip install virtualenvwrapper
+pip install Pygments
 
 ### end of homebrew
 ################################################################################
 
+
+################################################################################
+### Install Atom packages
+
+apm install zen activate-power-mode advanced open-file autocomplete-bibtex \
+autocomplete-python clipboard-history highlight-selected language-cython \
+language-matlab language-pfm language-restructuredtext linter linter-flake8 \
+markdown-preview-plus markdown-scroll-sync markdown-writer minimap \
+minimap-highlight-selected python-tools rst-preview todo-show wordcount
+
+### end of homebrew
+################################################################################
 
 
 ################################################################################
@@ -179,10 +192,6 @@ git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-but
 # 	* then you grab public URL and send off your video message in a heartbeat.
 
 
-# for the c alias (syntax highlighted cat)
-sudo easy_install Pygments
-
-
 # change to bash 4 (installed by homebrew)
 BASHPATH=$(brew --prefix)/bin/bash
 #sudo echo $BASHPATH >> /etc/shells
@@ -220,7 +229,7 @@ git update-index --untracked-cache
 
 # set up osx defaults
 #   maybe something else in here https://github.com/hjuutilainen/dotfiles/blob/master/bin/osx-user-defaults.sh
-sh .osx
+sh .macos
 
 # setup and run Rescuetime!
 
