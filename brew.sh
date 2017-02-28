@@ -60,14 +60,10 @@ brew install hub
 # mtr - ping & traceroute. best.
 brew install mtr
 
-    # allow mtr to run without sudo
-    mtrlocation=$(brew info mtr | grep Cellar | sed -e 's/ (.*//') #  e.g. `/Users/paulirish/.homebrew/Cellar/mtr/0.86`
-    sudo chmod 4755 $mtrlocation/sbin/mtr
-    sudo chown root $mtrlocation/sbin/mtr
-
-# Install other useful binaries
-brew install the_silver_searcher
-brew install fzf
+# allow mtr to run without sudo
+mtrlocation=$(brew info mtr | grep Cellar | sed -e 's/ (.*//') #  e.g. `/Users/paulirish/.homebrew/Cellar/mtr/0.86`
+sudo chmod 4755 $mtrlocation/sbin/mtr
+sudo chown root $mtrlocation/sbin/mtr
 
 # Install font tools.
 brew tap bramstein/webfonttools
@@ -91,6 +87,8 @@ brew install lynx
 brew install p7zip
 brew install pigz
 brew install pv
+brew install python
+brew install python3
 brew install rename
 brew install rhino
 brew install speedtest_cli
