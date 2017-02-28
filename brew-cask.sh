@@ -19,11 +19,20 @@ brew cask install rescuetime
 
 # dev
 brew cask install atom
+brew cask install docker-toolbox
 brew cask install imagealpha
 brew cask install imageoptim
+brew cask install postgres
 brew cask install sourcetree
 brew cask install sublime-text
 brew cask install virtualbox
+
+# writing
+brew cask install mactex
+brew cask install pandoc
+pandoc-citeproc
+pandoc-crossref
+
 
 # fun
 brew cask install miro-video-converter
