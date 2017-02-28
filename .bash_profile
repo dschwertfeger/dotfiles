@@ -2,8 +2,6 @@
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
-# load content of .pythonrc into the PYTHONSTARTUP environment variable
-export PYTHONSTARTUP=~/.pythonrc
 
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
@@ -11,19 +9,19 @@ export PYTHONSTARTUP=~/.pythonrc
 for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && source "$file"
 done
-unset file
+unset file;
 
 # init z | https://github.com/rupa/z
 . ~/Developer/z/z.sh
 
 # init rvm
-source ~/.rvm/scripts/rvm
+source ~/.rvm/scripts/rvm;
 
 # init nvm
-source ~/.nvm/nvm.sh
+source ~/.nvm/nvm.sh;
 
 # init virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper.sh;
 
 # Case-insensitive globbing (used in pathname expansion)
 shopt -s nocaseglob
@@ -41,6 +39,18 @@ for option in autocd globstar; do
 	shopt -s "$option" 2> /dev/null
 done
 
+# Add tab completion for many Bash commands
+if which brew &> /dev/null && [ -f "$(brew --prefix)/share/bash-completion/bash_completion" ]; then
+	source "$(brew --prefix)/share/bash-completion/bash_completion";
+elif [ -f /etc/bash_completion ]; then
+	source /etc/bash_completion;
+fi;
+
+# Enable tab completion for `g` by marking it as an alias for `git`
+if type _git &> /dev/null && [ -f /usr/local/etc/bash_completion.d/git-completion.bash ]; then
+	complete -o default -o nospace -F _git g;
+fi;
+
 # Add tab completion for SSH hostnames based on ~/.ssh/config, ignoring wildcards
 [ -e "$HOME/.ssh/config" ] && complete -o "default" -o "nospace" -W "$(grep "^Host" ~/.ssh/config | grep -v "[?*]" | cut -d " " -f2 | tr ' ' '\n')" scp sftp ssh
 
@@ -50,10 +60,3 @@ complete -W "NSGlobalDomain" defaults
 
 # Add `killall` tab completion for common apps
 complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes SystemUIServer Terminal Twitter" killall
-
-# If possible, add tab completion for many more commands
-[ -f /etc/bash_completion ] && source /etc/bash_completion
-
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-    . `brew --prefix`/etc/bash_completion
-fi
