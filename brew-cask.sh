@@ -13,6 +13,7 @@ brew install caskroom/cask/brew-cask
 # daily
 brew cask install spectacle
 brew cask install dropbox
+brew cask install evernote
 brew cask install gyazo
 brew cask install rescuetime
 
@@ -20,7 +21,9 @@ brew cask install rescuetime
 brew cask install atom
 brew cask install imagealpha
 brew cask install imageoptim
+brew cask install sourcetree
 brew cask install sublime-text
+brew cask install virtualbox
 
 # fun
 brew cask install miro-video-converter
