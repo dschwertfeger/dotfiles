@@ -1,2 +1,2 @@
-PATH="/Applications/Postgres93.app/Contents/MacOS/bin:$PATH"
-PATH="/Applications/Postgres93.app/Contents/MacOS/bin/pg_config:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+PATH="/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config:$PATH"
