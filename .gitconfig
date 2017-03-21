@@ -1,5 +1,6 @@
-[credential]
-	helper = osxkeychain
+[include]
+	# For username / creds / etc
+	path = ~/.gitconfig.local
 
 [alias]
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
