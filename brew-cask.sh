@@ -16,6 +16,8 @@ brew cask install dropbox
 brew cask install evernote
 brew cask install gyazo
 brew cask install rescuetime
+brew cask install telegram
+brew cask zotero
 
 # dev
 brew cask install atom
@@ -29,10 +31,6 @@ brew cask install virtualbox
 
 # writing
 brew cask install mactex
-brew cask install pandoc
-pandoc-citeproc
-pandoc-crossref
-
 
 # fun
 brew cask install miro-video-converter
@@ -47,8 +45,8 @@ brew cask install miro-video-converter
 # less often
 brew cask install disk-inventory-x
 brew cask install vlc
-#brew cask install screenflow
-#brew cask install licecap
+# brew cask install screenflow
+# brew cask install licecap
 # brew cask install utorrent
 
 

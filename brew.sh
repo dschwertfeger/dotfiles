@@ -71,15 +71,19 @@ brew install sfnt2woff
 brew install sfnt2woff-zopfli
 brew install woff2
 
+# writing
+brew install pandoc
+brew install pandoc-citeproc
+brew install pandoc-crossref
 
 # Install other useful binaries.
 brew install the_silver_searcher
 brew install fzf
-
 brew install dark-mode
 #brew install exiv2
 brew install git
 brew install git-lfs
+brew install htop
 brew install imagemagick --with-webp
 brew install node # This installs `npm` too using the recommended installation method
 brew install lua
