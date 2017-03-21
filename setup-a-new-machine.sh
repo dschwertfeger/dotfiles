@@ -138,7 +138,7 @@ pip install Pygments
 ################################################################################
 ### Install Atom packages
 
-apm install zen activate-power-mode advanced open-file autocomplete-bibtex \
+apm install zen activate-power-mode advanced-open-file autocomplete-bibtex \
 autocomplete-python clipboard-history highlight-selected language-cython \
 language-matlab language-pfm language-restructuredtext linter linter-flake8 \
 markdown-preview-plus markdown-scroll-sync markdown-writer minimap \
