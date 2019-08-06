@@ -1,2 +1,4 @@
+PATH=/usr/local/bin:/usr/local/sbin:$PATH
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config:$PATH"
+PATH="$HOME/.rbenv/bin:$PATH"
