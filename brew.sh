@@ -11,6 +11,7 @@ brew upgrade
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -79,7 +80,7 @@ brew install pandoc-crossref
 # Install other useful binaries.
 brew install the_silver_searcher
 brew install fzf
-brew install dark-mode
+# brew install dark-mode
 #brew install exiv2
 brew install git
 brew install git-lfs
@@ -100,7 +101,6 @@ brew install ssh-copy-id
 brew install testssl
 brew install tree
 brew install vbindiff
-brew install webkit2png
 brew install zopfli
 
 brew install terminal-notifier
