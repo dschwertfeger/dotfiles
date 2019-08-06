@@ -1,7 +1,9 @@
 PATH="/usr/local/bin:$PATH"
-PATH="$HOME/bin:$PATH"
+# PATH="$HOME/bin:$PATH"
 
-PATH=/usr/local/bin:/usr/local/sbin:$PATH
+# PATH=/usr/local/bin:/usr/local/sbin:$PATH
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 PATH="/Applications/Postgres.app/Contents/Versions/latest/bin/pg_config:$PATH"
 PATH="$HOME/.rbenv/bin:$PATH"
+
+PATH=`$(brew --prefix coreutils)/libexec/gnubin`
