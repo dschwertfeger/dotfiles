@@ -8,43 +8,63 @@
 ###  backup old machine's key items
 
 mkdir -p ~/migration/home
+mkdir -p ~/migration/Library/"Application Support"/
+mkdir -p ~/migration/Library/Preferences/
+mkdir -p ~/migration/Library/Application Support/
+mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
+
 cd ~/migration
 
 # what is worth reinstalling?
-brew leaves      		> brew-list.txt    # all top-level brew installs
-brew cask list 			> cask-list.txt
-npm list -g --depth=0 	> npm-g-list.txt
+brew leaves                 > brew-list.txt    # all top-level brew installs
+brew cask list              > cask-list.txt
+npm list -g --depth=0       > npm-g-list.txt
+yarn global ls --depth=0    > yarn-g-list.txt
+
+
+apm list --installed --bare > atom-package-list.txt
+# without version numbers (for latest version)
+apm list --installed --bare | grep '^[^@]\+' -o > atom-package-list.txt
 
 
 # then compare brew-list to what's in `brew.sh`
 #   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
 
+# backup some dotfiles likely not under source control
+cp -Rp \
+    ~/.bash_history \
+    ~/.extra \
+    ~/.gitconfig.local \
+    ~/.gnupg \
+    ~/.nano \
+    ~/.nanorc \
+    ~/.netrc \
+    ~/.ssh \
+    ~/.z   \
+        ~/migration/home
 # let's hold on to these
 
-cp ~/.extra ~/migration/home
-cp ~/.z ~/migration/home
+cp -Rp ~/Documents ~/migration
 
-cp -R ~/.ssh ~/migration/home
-cp -R ~/.gnupg ~/migration/home
+cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
 
-cp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration  # wifi
+cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
+cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
 
-cp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration
-cp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration
-
-cp -R ~/Library/Services ~/migration # automator stuff
-
-cp -R ~/Documents ~/migration
-
-cp ~/.bash_history ~/migration # back it up for fun?
-
-cp ~/.gitconfig.local ~/migration
-
-cp ~/.z ~/migration # z history file.
+cp -Rp ~/Library/Services ~/migration/Library/ # automator stuff
+cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
 
 # sublime text settings
-cp "~/Library/Application Support/Sublime Text 3/Packages" ~/migration
+cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Application Support"
 
+# also consider...
+# random git branches you never pushed anywhere?
+# git untracked files (or local gitignored stuff). stuff you never added, but probably want..
+
+
+# OneTab history pages, because chrome tabs are valuable.
+
+# usage logs you've been keeping.
 
 # iTerm settings.
   # Prefs, General, Use settings from Folder
@@ -60,7 +80,11 @@ cp "~/Library/Application Support/Sublime Text 3/Packages" ~/migration
 
 # Current Chrome tabs via OneTab
 
-# software licenses like sublimetext
+# software licenses.
+#   sublimetext's is in its Application Support folder
+
+# ~/Music and such
+cp -Rp ~/Music ~/migration
 
 
 ### end of old machine backup
@@ -125,7 +149,7 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 
 ################################################################################
-### Install python stuff
+### Install Python stuff
 
 pip install virtualenv
 pip install virtualenvwrapper
@@ -133,7 +157,7 @@ pip install virtualenvwrapper
 # /usr/local/bin/pip3 install virtualenvwrapper
 pip install Pygments
 
-### end of homebrew
+### end of Python stuff
 ################################################################################
 
 
@@ -145,6 +169,8 @@ autocomplete-python clipboard-history highlight-selected language-cython \
 language-matlab language-pfm language-restructuredtext linter linter-flake8 \
 markdown-preview-plus markdown-scroll-sync markdown-writer minimap \
 minimap-highlight-selected python-tools rst-preview todo-show wordcount
+
+apm install --packages-file my_atom_packages.txt
 
 ### end of homebrew
 ################################################################################
@@ -183,6 +209,7 @@ git clone https://github.com/rupa/z.git ~/code/z
 
 # github.com/thebitguru/play-button-itunes-patch
 # disable itunes opening on media keys
+# that's already in .macos settings I believe
 git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
 
 
@@ -192,6 +219,9 @@ git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-but
 # 	 + put it in Dropbox/public
 # 	* Now… you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
 # 	* then you grab public URL and send off your video message in a heartbeat.
+
+# for the c alias (syntax highlighted cat)
+sudo easy_install Pygments
 
 
 # change to bash 4 (installed by homebrew)
