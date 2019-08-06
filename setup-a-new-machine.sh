@@ -129,6 +129,8 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 pip install virtualenv
 pip install virtualenvwrapper
+# /usr/local/bin/pip3 install virtualenv
+# /usr/local/bin/pip3 install virtualenvwrapper
 pip install Pygments
 
 ### end of homebrew
