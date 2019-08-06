@@ -30,6 +30,9 @@
 	# Switch to a branch, creating it if necessary
 	go = checkout -B
 
+	# Update submodules
+	smu = submodule update --init --recursive
+
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
 	branches = branch -a
@@ -89,7 +92,7 @@
 
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
+	excludesfile = /Users/dsc/.gitignore
 	attributesfile = ~/.gitattributes
 	# Treat spaces before tabs, lines that are indented with 8 or more spaces, and all kinds of trailing whitespace as an error
 	whitespace = space-before-tab,indent-with-non-tab,trailing-space
@@ -172,3 +175,18 @@
 
 [url "git://gist.github.com/"]
 	insteadOf = "gist:"
+
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+
+[user]
+	name = David Schwertfeger
+	email = david.schwertfeger@googlemail.com
+
+[commit]
+	template = /Users/dsc/.stCommitMsg
