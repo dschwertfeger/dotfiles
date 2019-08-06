@@ -1,8 +1,3 @@
-# Add `~/bin` to the `$PATH`
-export PATH="/usr/local/bin:$PATH"
-export PATH="$HOME/bin:$PATH"
-
-
 # Load the shell dotfiles, and then some:
 # * ~/.path can be used to extend `$PATH`.
 # * ~/.extra can be used for other settings you don’t want to commit.
@@ -10,6 +5,11 @@ for file in ~/.{path,bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$file" ] && source "$file"
 done
 unset file;
+
+# to help sublimelinter etc with finding my PATHS
+case $- in
+   *i*) source ~/.extra
+esac
 
 ##
 ## hooking in other apps…
@@ -19,12 +19,12 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
 
 # Load RVM into a shell session *as a function*
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # rbenv
-if which rbenv > /dev/null;
-  then eval "$(rbenv init -)";
-fi
+# if which rbenv > /dev/null;
+#   then eval "$(rbenv init -)";
+# fi
 
 # z beats cd most of the time. `brew install z`
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
@@ -79,7 +79,6 @@ shopt -s dirspell 2> /dev/null
 
 # Turn on recursive globbing (enables ** to recurse all directories)
 shopt -s globstar 2> /dev/null
-
 
 # Append to the Bash history file, rather than overwriting it
 shopt -s histappend
