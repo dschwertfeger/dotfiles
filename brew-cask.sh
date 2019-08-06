@@ -11,13 +11,14 @@ brew install caskroom/cask/brew-cask
 # brew tap caskroom/versions
 
 # daily
-brew cask install spectacle
+brew cask install calibre
 brew cask install dropbox
 brew cask install evernote
-brew cask install gyazo
 brew cask install rescuetime
+brew cask install slack
+brew cask install spectacle
 brew cask install telegram
-brew cask zotero
+brew cask install zotero
 
 # dev
 brew cask install atom
@@ -44,10 +45,16 @@ brew cask install miro-video-converter
 
 # less often
 brew cask install disk-inventory-x
+brew cask install gyazo
+brew cask install keka
+brew cask install skitch
 brew cask install vlc
 # brew cask install screenflow
 # brew cask install licecap
 # brew cask install utorrent
+
+brew tap caskroom/fonts
+brew cask install font-fira-code
 
 
 # Not on cask but I want regardless.
