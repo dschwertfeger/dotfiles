@@ -69,6 +69,19 @@ set_prompts() {
 
     fi
 
+    # Determine active Python virtualenv details.
+    function virtualenv () {
+        if test -z "$VIRTUAL_ENV" ; then
+            PYTHON_VIRTUALENV=""
+        else
+              PYTHON_VIRTUALENV="(`basename \"$VIRTUAL_ENV\"`)"
+        fi
+
+        echo ${PYTHON_VIRTUALENV} "";
+    }
+    # disable the default virtualenv prompt change
+    export VIRTUAL_ENV_DISABLE_PROMPT=1
+
     # Only show username/host if not default
     function usernamehost() {
 
@@ -136,6 +149,7 @@ set_prompts() {
 
     PS1="\[\033]0;\w\007\]"                                 # terminal title (set to the current working directory)
     PS1+="\n\[$bold\]"
+    PS1+="\[$orange\]\$(virtualenv)"
     PS1+="\[$(usernamehost)\]"                              # username at host
     PS1+="\[$green\]\w"                                     # working directory
     PS1+="\$(prompt_git \"\[$white\] on \[$purple\]\" \"\[$cyan\]\")"   # git repository details
