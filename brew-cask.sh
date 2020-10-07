@@ -14,11 +14,22 @@ brew install caskroom/cask/brew-cask
 brew cask install calibre
 brew cask install dropbox
 brew cask install evernote
+brew cask install notion
+brew cask install obsidian
 brew cask install rescuetime
 brew cask install slack
 brew cask install spectacle
 brew cask install telegram
 brew cask install zotero
+
+# quicklook: https://github.com/sindresorhus/quick-look-plugins
+brew cask install qlcolorcode
+brew cask install qlstephen
+brew cask install qlmarkdown
+brew cask install quicklook-json
+brew cask install qlimagesize
+brew cask install suspicious-package
+brew cask install quicklookase qlvideo
 
 # dev
 brew cask install atom
@@ -29,6 +40,7 @@ brew cask install postgres
 brew cask install sourcetree
 brew cask install sublime-text
 brew cask install virtualbox
+brew cask install visual-studio-code
 
 # writing
 brew cask install mactex
