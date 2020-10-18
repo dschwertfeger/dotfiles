@@ -42,7 +42,8 @@
 } ;; profiles
 
 :templates {
-    :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
+    :alfred "osascript -e 'tell application \"Alfred 4\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
+    :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'" ;; don't have KBM {yet}
     :open "open \"%s\""
 } ;; templates
 
@@ -90,7 +91,7 @@
 
 :applications {
     :terminals  ["^com\\.apple\\.Terminal$",
-                 "^com\\.googlecode\\.iterm2$"]
+                 "^com\\.googlecode\\.iterm2$"] ;; I don't use iTerm so could delete this
 }
 
 ;; main contains multiple manipulators
@@ -184,32 +185,32 @@
        [:##application :!TOleft_shift :msft {:alone :close_bracket} ]
     ]}
 
-    {:des "caps lock -> escape (alone) left_control (held) or vim movements"
+    {:des "caps lock -> escape (alone) left_control (held) or ijkl-navigation"
      :rules [
         [:##caps_lock :left_control nil {:alone :escape}]
-        [:!Th   :left_arrow]
-        [:!Tj   :down_arrow]
-        [:!Tk   :up_arrow]
+        [:!Ti   :up_arrow]
+        [:!Tj   :left_arrow]
+        [:!Tk   :down_arrow]
         [:!Tl   :right_arrow]
-        [:!TSh  :!Sleft_arrow]
-        [:!TSj  :!Sdown_arrow]
-        [:!TSk  :!Sup_arrow]
+        [:!TSi  :!Sup_arrow]
+        [:!TSj  :!Sleft_arrow]
+        [:!TSk  :!Sdown_arrow]
         [:!TSl  :!Sright_arrow]
-        [:!TCh  :!Cleft_arrow]
-        [:!TCj  :!Cdown_arrow]
-        [:!TCk  :!Cup_arrow]
+        [:!TCi  :!Cup_arrow]
+        [:!TCj  :!Cleft_arrow]
+        [:!TCk  :!Cdown_arrow]
         [:!TCl  :!Cright_arrow]
-        [:!TCSh :!CSleft_arrow]
-        [:!TCSj :!CSdown_arrow]
-        [:!TCSk :!CSup_arrow]
+        [:!TCSi :!CSup_arrow]
+        [:!TCSj :!CSleft_arrow]
+        [:!TCSk :!CSdown_arrow]
         [:!TCSl :!CSright_arrow]
-        [:!TOh  :!Oleft_arrow]
-        [:!TOj  :!Odown_arrow]
-        [:!TOk  :!Oup_arrow]
+        [:!TOi  :!Oup_arrow]
+        [:!TOj  :!Oleft_arrow]
+        [:!TOk  :!Odown_arrow]
         [:!TOl  :!Oright_arrow]
-        [:!TOSh :!OSleft_arrow]
-        [:!TOSj :!OSdown_arrow]
-        [:!TOSk :!OSup_arrow]
+        [:!TOSi :!OSup_arrow]
+        [:!TOSj :!OSleft_arrow]
+        [:!TOSk :!OSdown_arrow]
         [:!TOSl :!OSright_arrow]
     ]}
 
