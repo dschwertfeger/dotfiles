@@ -1,0 +1,231 @@
+{
+    ;; !  | means mandatory -   modifier(s) alone when pressend change behavior
+    ;; #  | means optional  -   modifiers are optional (but atleast one necessary)
+
+    ;; :!Ca is keycode :a and prefix a with !C
+
+    ;; C  | left_command
+    ;; T  | left_control
+    ;; O  | left_option
+    ;; S  | left_shift
+    ;; F  | fn
+    ;; Q  | right_command
+    ;; W  | right_control
+    ;; E  | right_option
+    ;; R  | right_shift
+
+    ;; ## | optional any
+    ;; !! | command + control + optional + shift (hyper)
+
+    ;; to understand better how modifiers work in karabiner
+    ;; karabiner definition of mandatory and optional
+    ;; https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/modifiers/
+
+
+    ;; need to prefix C T O S F with ! or #
+    ;;
+    ;; code for all this:
+    ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/b9b334a187379f9bc8182ad59e2cca2a1789e9c0/src/karabiner_configurator/keys.clj#L68
+
+
+:profiles {
+    :Default {  :default true
+                :sim     50    ;; simultaneous_threshold_milliseconds (def: 50)
+                                ;; keys need to be pressed within this threshold to be considered simultaneous
+                :delay   500    ;; to_delayed_action_delay_milliseconds (def: 500)
+                                ;; basically it means time after which the key press is count delayed
+                :alone   500    ;; to_if_alone_timeout_milliseconds (def: 1000)
+                                ;; hold for 995s and single tap registered; hold for 1005s and seen as modifier
+                :held    1000   ;; to_if_held_down_threshold_milliseconds (def: 500)
+                                ;; key is fired twice when 500 ms is elapsed (otherwise seen as a hold command)
+             }
+} ;; profiles
+
+:templates {
+    :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'"
+    :open "open \"%s\""
+} ;; templates
+
+;; Define different kinds of keyboards
+:devices {
+    :apple [
+            {:vendor_id 1452}
+            {:vendor_id 76}
+    ]
+    :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
+    :msft [{:vendor_id 1118, :product_id 1957 }] ;; Microsoft Keyboard [Ergonomic Sculpt]
+    :tada68 [{:vendor_id 65261, :product_id 4611 }] ;; Tada68 (mechanical)
+    :kinesis [{:vendor_id 10730 }] ;; Kinesis Advantage 2 keyboard
+
+    :kybs [  ;; Default for all keyboards
+        {:vendor_id 1452}
+        {:vendor_id 76}
+        {:vendor_id 1241, :product_id 41618 }
+        {:vendor_id 1118, :product_id 1957 }
+        {:vendor_id 65261, :product_id 4611 }
+        {:vendor_id 10730}
+    ]
+
+    :kybs-kinesis [  ;; All keyboards (except Kinesis)
+        {:vendor_id 1452}
+        {:vendor_id 76}
+        {:vendor_id 1241, :product_id 41618 }
+        {:vendor_id 1118, :product_id 1957 }
+        {:vendor_id 65261, :product_id 4611 }
+    ]
+
+} ;; devices
+
+;; layers are basically "hyper" keys
+;; press this in combination with something else and depending on your rule, make things happen
+:layers {
+    :launch-mode {:key :tab}
+} ;; layers
+
+;; simlayers are basically "hyper" keys
+;; layers works too, but only recommended for non-typing keys like . or tab
+;; or keys like z which are used less often
+:simlayers {
+} ;; simlayers
+
+:applications {
+    :terminals  ["^com\\.apple\\.Terminal$",
+                 "^com\\.googlecode\\.iterm2$"]
+}
+
+;; main contains multiple manipulators
+:main [
+
+    ;; each manipulator has a description and multiple rules
+
+    ;;{:des "..."                               ;; -> description
+    ;; :rules[
+    ;;          [<from>  <to>  <conditions>]    ;; -> rule 1
+    ;;          [<from>  <to>  <conditions>]    ;; -> rule 2
+    ;; ]}
+
+    ;; rule [:period ["period-mode" 1] nil {:afterup ["period-mode" 0] :alone :period}]
+    ;;       |_____| |_______________| |_| |_________________________________________|
+    ;;        <from>    <to>      <conditions>         <other options>
+    ;;
+    ;; karabiner docs: ;; https://pqrs.org/osx/karabiner/json.html#complex_modifications-manipulator-definition
+    ;; <other options> includs ~to_if_alone~, ~to_if_held_down~,~to_after_key_up~, ~to_delayed_action~ and ~parameters~.
+    ;;
+
+    ;; (custom variables) & modifiers -> Advanced
+    ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org#custom-variable
+
+
+    {:des "Tada68 specific mappings"
+     :rules [:tada68
+       [:delete_forward :end]
+       [:escape :grave_accent_and_tilde]
+       [:grave_accent_and_tilde :home]
+       [:left_gui :left_alt]
+    ]}
+
+    {:des "Microsoft Ergonomic Sculpt Keyboard"
+     :rules [:msft
+       [:delete_forward :end]
+       [:escape :grave_accent_and_tilde]
+       [:grave_accent_and_tilde :home]
+       [:left_gui :left_alt]
+    ]}
+
+    {:des "Kinesis Advantage2 specific mappings"
+     :rules [:kinesis
+       [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
+       [:open_bracket :backslash] ;; [ -> \
+       [:close_bracket :slash] ;; ] -> /
+    ]}
+
+    {:des "Ctrl Backspace -> Forward Delete"
+     :rules [ :kybs
+       [:!Wdelete_or_backspace :delete_forward]
+       [:!Tdelete_or_backspace :delete_forward]
+    ]}
+
+    {:des "Ctrl W -> Delete last word"
+     :rules [ :kybs
+       [:!Ww :!Ww :terminals]
+       [:!Tw :!Tw :terminals]
+
+       [:!Ww :!TOSdelete_or_backspace !:terminals]
+       [:!Tw :!TOSdelete_or_backspace !:terminals]
+    ]}
+
+    {:des "Shift -> {} or Shift"
+     :rules [
+       [:##left_shift :left_shift :kybs {:alone :!Sopen_bracket} ]
+       [:##right_shift :right_shift :kybs {:alone :!Sclose_bracket} ]
+    ]}
+
+    {:des "Cmd/Ctrl -> () : primary thumb keys"
+     :rules [
+       [:##left_command :##left_command :apple {:held :left_command :alone :!S9}]
+       [:##right_command :##right_control :apple {:held :right_control :alone :!S0}]
+
+       [:##left_command :##left_command :kinesis {:held :left_command :alone :!S9}]
+       [:##right_control :##right_control :kinesis {:held :right_control :alone :!S0}]
+
+       [:##left_alt :##left_command [:tada68 :msft] {:held :left_command :alone :!S9}]
+       [:##right_alt :##right_control [:tada68 :msft] {:held :right_control :alone :!S0}]
+    ]}
+
+    {:des "Alt -> [] or Meh(Control Shift Option): secondary thumb keys"
+     :rules [
+       [:##left_alt :##left_option :apple {:alone :open_bracket} ]
+       [:##right_alt :!TOleft_shift :apple {:alone :close_bracket} ]
+
+       [:##left_alt :##left_option :kinesis {:alone :open_bracket} ]
+       [:##right_gui :!TOleft_shift :kinesis {:alone :close_bracket} ]
+
+       [:##left_command :##left_option :msft {:alone :open_bracket} ]
+       [:##application :!TOleft_shift :msft {:alone :close_bracket} ]
+    ]}
+
+    {:des "caps lock -> escape (alone) left_control (held) or vim movements"
+     :rules [
+        [:##caps_lock :left_control nil {:alone :escape}]
+        [:!Th   :left_arrow]
+        [:!Tj   :down_arrow]
+        [:!Tk   :up_arrow]
+        [:!Tl   :right_arrow]
+        [:!TSh  :!Sleft_arrow]
+        [:!TSj  :!Sdown_arrow]
+        [:!TSk  :!Sup_arrow]
+        [:!TSl  :!Sright_arrow]
+        [:!TCh  :!Cleft_arrow]
+        [:!TCj  :!Cdown_arrow]
+        [:!TCk  :!Cup_arrow]
+        [:!TCl  :!Cright_arrow]
+        [:!TCSh :!CSleft_arrow]
+        [:!TCSj :!CSdown_arrow]
+        [:!TCSk :!CSup_arrow]
+        [:!TCSl :!CSright_arrow]
+        [:!TOh  :!Oleft_arrow]
+        [:!TOj  :!Odown_arrow]
+        [:!TOk  :!Oup_arrow]
+        [:!TOl  :!Oright_arrow]
+        [:!TOSh :!OSleft_arrow]
+        [:!TOSj :!OSdown_arrow]
+        [:!TOSk :!OSup_arrow]
+        [:!TOSl :!OSright_arrow]
+    ]}
+
+    {:des "launch-mode: quick open applications"
+     :rules [:launch-mode
+                [:y [:km "wm: def 1 major"] ] ;; Window move
+                [:u [:km "wm: def 1"] ] ;; Window move
+                [:i [:km "wm: def 2"] ] ;; Window move
+                [:o [:km "wm: def 3"] ] ;; Window move
+                [:p [:km "wm: def 3 major"] ] ;; Window move
+
+                [:j :!QWspacebar ] ;; e(m)oji
+                [:k [:km "trigger macro by name"] ] ;; keyboard maestro
+                [:l :!CSv ] ;; c(l)ipboard history
+    ]}
+
+] ;; main list
+
+}
