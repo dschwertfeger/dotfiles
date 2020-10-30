@@ -8,17 +8,22 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+# Save Homebrew’s installed location.
+BREW_PREFIX=$(brew --prefix)
+
 # Install GNU core utilities (those that come with macOS are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
-ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum" # didn't do 2020-10-07 18:16
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+# brew install gnu-sed --with-default-names
+brew install gnu-sed
+
 # Install Bash 4.
 # Note: don’t forget to add `/usr/local/bin/bash` to `/etc/shells` before
 # running `chsh`.
@@ -27,13 +32,14 @@ brew tap homebrew/versions
 brew install bash-completion2
 
 # Switch to using brew-installed bash as default shell
-if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
-  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
-  chsh -s /usr/local/bin/bash;
+if ! fgrep -q "${BREW_PREFIX}/bin/bash" /etc/shells; then
+  echo "${BREW_PREFIX}/bin/bash" | sudo tee -a /etc/shells;
+  chsh -s "${BREW_PREFIX}/bin/bash";
 fi;
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+# brew install wget --with-iri
+brew install wget
 
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
@@ -48,6 +54,15 @@ brew install homebrew/dupes/grep
 brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 brew install homebrew/php/php56 --with-gmp
+
+# Install more recent versions of some macOS tools.
+brew install vim
+brew install nano
+brew install grep
+brew install openssh
+brew install screen
+brew install php
+brew install gmp
 
 # z hopping around folders
 brew install z
@@ -76,6 +91,17 @@ brew install woff2
 brew install pandoc
 brew install pandoc-citeproc
 brew install pandoc-crossref
+
+# keyboard stuff
+brew install yqrashawn/goku/goku
+
+# text expander
+brew tap federico-terzi/espanso
+brew install espanso
+
+# audio stuff
+brew install ffmpeg
+brew install essentia # ? should i
 
 # Install other useful binaries.
 brew install the_silver_searcher

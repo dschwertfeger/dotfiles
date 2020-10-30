@@ -1,10 +1,16 @@
+<!-- NOTE: I should clean up the order. Especially, some confusion about setup and setup-new-machine. How and when brew is installed. How/when to install NVM, node, how to hook in
+
+- I think setup-new-machine is newer and better but it misses a few things from setup, like NVM
+
+- Z seems to be done like 3 times? -->
+
 # David's dotfiles
 
 The use of this repo is mainly as a backup of my dotfiles for myself and to provide documentation and a headless installation of my development environment.
 
-It's orginially forked from [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles/) and in addition I took a couple of things from [Paul Irish's fork](https://github.com/paulirish/dotfiles/) of Mathias' repo.
+It's originally forked from [Mathias Bynens' dotfiles](https://github.com/mathiasbynens/dotfiles/) and I took a couple of ideas from [Paul Irish's fork](https://github.com/paulirish/dotfiles/) of Mathias' repo.
 
-Mathias' is the repo to fork, though. 
+Mathias' is the repo to fork, though.
 
 ## Install the necessary apps
 
@@ -51,7 +57,7 @@ I recommend getting a [`.jshintrc`](https://github.com/jshint/node-jshint/blob/m
 
 #### Manual run
 * `setup.sh` - basic setup, explained above
-* `.osx` - run on a fresh osx machine
+* `.macos` - run on a fresh osx machine
 * `.brew` - homebrew initialization
 
 #### git, brah
