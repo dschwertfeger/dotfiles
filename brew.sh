@@ -106,8 +106,12 @@ brew install essentia # ? should i
 # Install other useful binaries.
 brew install the_silver_searcher
 brew install fzf
-# brew install dark-mode
-#brew install exiv2
+
+brew install duti # set default apps for file extensions
+# https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
+duti -s $(osascript -e 'id of app "Visual Studio Code"') .py all
+duti -s $(osascript -e 'id of app "Visual Studio Code"') .js all
+
 brew install git
 brew install git-lfs
 brew install htop
