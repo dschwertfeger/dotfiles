@@ -8,10 +8,13 @@
 ###  backup old machine's key items
 
 mkdir -p ~/migration/home
+mkdir -p ~/migration/home/Library/"Application Support"/
 mkdir -p ~/migration/Library/"Application Support"/
 mkdir -p ~/migration/Library/Preferences/
 mkdir -p ~/migration/Library/Application Support/
+mkdir -p ~/migration/Library/Keychains
 mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
+mkdir -p ~/migration/U
 
 cd ~/migration
 
@@ -30,6 +33,46 @@ apm list --installed --bare | grep '^[^@]\+' -o > atom-package-list.txt
 # then compare brew-list to what's in `brew.sh`
 #   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
 
+# Zotero
+cp -Rp ~/Zotero ~/migration/home
+cp -Rp ~/Library/"Application Support"/Zotero ~/migration/home/Library/"Application Support"/
+
+# Zettlr
+cp -Rp ~/Library/"Application Support"/zettlr ~/migration/home/Library/"Application Support"/
+
+# Obsidian
+cp -Rp ~/Library/"Application Support"/obsidian ~/migration/home/Library/"Application Support"/
+
+# Ableton
+cp -Rp ~/Library/"Application Support"/Ableton ~/migration/home/Library/"Application Support"/
+
+# Tastyworks
+cp -Rp ~/Library/"Application Support"/tastyworks ~/migration/home/Library/"Application Support"/
+
+# Audacity
+cp -Rp ~/Library/"Application Support"/audacity ~/migration/home/Library/"Application Support"/
+
+
+# Backup Application Support data
+cp -Rp \
+    ~/Library/"Application Support"/Ableton \
+    ~/Library/"Application Support"/audacity \
+    ~/Library/"Application Support"/Code \
+    ~/Library/"Application Support"/obsidian \
+    ~/Library/"Application Support"/SourceTree \
+    ~/Library/"Application Support"/Spectacle \ # Shortcuts.json -> much better than in .macos
+    ~/Library/"Application Support"/tastyworks \
+    ~/Library/"Application Support"/zettlr \
+    ~/Library/"Application Support"/Zotero \
+        ~/migration/home/Library/"Application Support"/
+
+# Backup Preferences data
+cp -Rp \
+    ~/Library/Preferences/Ableton \
+    ~/Library/Preferences/calibre \
+    ~/Library/Preferences/espanso \
+        ~/migration/Library/Preferences/
+
 # backup some dotfiles likely not under source control
 cp -Rp \
     ~/.bash_history \
@@ -46,10 +89,15 @@ cp -Rp \
 
 cp -Rp ~/Documents ~/migration
 
+# keychain
+cp -Rp ~/Library/Keychains/login.keychain-db Library/Keychains
+
 cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
 
 cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
 cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
+cp -Rp ~/Library/Preferences/espanso ~/migration/Library/Preferences/
+
 
 cp -Rp ~/Library/Services ~/migration/Library/ # automator stuff
 cp -Rp ~/Library/Fonts ~/migration/Library/ # all those fonts you've installed
@@ -182,6 +230,7 @@ apm install --packages-file my_atom_packages.txt
 
 # github.com/jamiew/git-friendly
 # the `push` command which copies the github compare URL to my clipboard is heaven
+# TODO: I think this didn't work
 bash < <( curl https://raw.github.com/jamiew/git-friendly/master/install.sh)
 
 
@@ -201,6 +250,8 @@ npm install --global trash-cli
 # https://github.com/scopatz/nanorc
 curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 
+
+# NOTE: This is already installed in ./brew.sh
 # github.com/rupa/z   - oh how i love you
 git clone https://github.com/rupa/z.git ~/code/z
 # consider reusing your current .z file if possible. it's painful to rebuild :)
@@ -221,9 +272,11 @@ git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-but
 # 	* then you grab public URL and send off your video message in a heartbeat.
 
 # for the c alias (syntax highlighted cat)
+# FIXME: This is already installed above with pip
 sudo easy_install Pygments
 
 
+# FIXME: This is already done somewhere else
 # change to bash 4 (installed by homebrew)
 BASHPATH=$(brew --prefix)/bin/bash
 #sudo echo $BASHPATH >> /etc/shells
@@ -248,6 +301,10 @@ ln -sf "/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl" ~/bin/su
 # speed up git status
 git config status.showuntrackedfiles no
 git update-index --untracked-cache
+
+
+# keyboard input sources german umlauts with option key
+https://hci.rwth-aachen.de/usgermankeyboard
 
 
 ################################################################################
