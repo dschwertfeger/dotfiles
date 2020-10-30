@@ -1,13 +1,14 @@
 # homebrew!
 echo "Installing homebrew…"
-ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-chmod +x .brew 
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+chmod +x .brew
 ./.brew
 
 # https://github.com/creationix/nvm
 # nvm, node, npm
 echo "Installing nvm…"
-curl https://raw.github.com/creationix/nvm/master/install.sh | sh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.36.0/install.sh | bash
+#curl https://raw.github.com/creationix/nvm/master/install.sh | sh
 source ~/.bashrc
 echo "Installing node v0.10.x"
 nvm install 0.10
