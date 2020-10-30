@@ -43,37 +43,23 @@
 
 :templates {
     :alfred "osascript -e 'tell application \"Alfred 4\" to run trigger \"%s\" in workflow \"%s\" with argument \"%s\"'"
-    :km "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'" ;; don't have KBM {yet}
-    :open "open \"%s\""
+    :km     "osascript -e 'tell application \"Keyboard Maestro Engine\" to do script \"%s\"'" ;; don't have KBM {yet}
+    :open   "open \"%s\""
+    :opena  "open -a \"%s\""
 } ;; templates
 
 ;; Define different kinds of keyboards
 :devices {
-    :apple [
-            {:vendor_id 1452}
-            {:vendor_id 76}
-    ]
-    :ap2 [{:vendor_id 1241, :product_id 41618 }] ;; Anne Pro 2 (mechanical)
-    :msft [{:vendor_id 1118, :product_id 1957 }] ;; Microsoft Keyboard [Ergonomic Sculpt]
+    :apple [{:vendor_id 1452, :product_id 832 }] ;; Apple Internal
+    :ap2 [{:vendor_id 13, :product_id 0 }] ;; Anne Pro 2 (mechanical)
     :tada68 [{:vendor_id 65261, :product_id 4611 }] ;; Tada68 (mechanical)
-    :kinesis [{:vendor_id 10730 }] ;; Kinesis Advantage 2 keyboard
 
     :kybs [  ;; Default for all keyboards
-        {:vendor_id 1452}
-        {:vendor_id 76}
-        {:vendor_id 1241, :product_id 41618 }
-        {:vendor_id 1118, :product_id 1957 }
-        {:vendor_id 65261, :product_id 4611 }
-        {:vendor_id 10730}
-    ]
-
-    :kybs-kinesis [  ;; All keyboards (except Kinesis)
-        {:vendor_id 1452}
-        {:vendor_id 76}
-        {:vendor_id 1241, :product_id 41618 }
-        {:vendor_id 1118, :product_id 1957 }
+        {:vendor_id 1452, :product_id 832}
+        {:vendor_id 13, :product_id 0 }
         {:vendor_id 65261, :product_id 4611 }
     ]
+    ; :kybs [ :apple, :ap2, :tada68 ] ;; hmm, shouldn't this work somehow?
 
 } ;; devices
 
@@ -116,6 +102,19 @@
     ;; (custom variables) & modifiers -> Advanced
     ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/examples.org#custom-variable
 
+    ;; TODO-dsc: Add context specific simlayers -> `w` for window-management, `a` for apps `s` for signs & symbols
+    ;; You get the idea
+
+
+    {:des "Anne Pro 2 specific mappings"
+     :rules [:ap2
+       [:delete_forward :end]
+    ;    [:escape :grave_accent_and_tilde]
+    ;    [:!Sescape :!Sgrave_accent_and_tilde]
+    ;    [:!Rescape :!Rgrave_accent_and_tilde]
+       [:!Cescape :!Cgrave_accent_and_tilde]
+    ;    lasdff ladfkl asdkljf lk
+    ]}
 
     {:des "Tada68 specific mappings"
      :rules [:tada68
@@ -125,20 +124,20 @@
        [:left_gui :left_alt]
     ]}
 
-    {:des "Microsoft Ergonomic Sculpt Keyboard"
-     :rules [:msft
-       [:delete_forward :end]
-       [:escape :grave_accent_and_tilde]
-       [:grave_accent_and_tilde :home]
-       [:left_gui :left_alt]
-    ]}
+        ; [[{:des "Microsoft Ergonomic Sculpt Keyboard"
+        ;  :rules [:msft
+        ;    [:delete_forward :end]
+        ;    [:escape :grave_accent_and_tilde]
+        ;    [:grave_accent_and_tilde :home]
+        ;    [:left_gui :left_alt]
+        ; ]}
 
-    {:des "Kinesis Advantage2 specific mappings"
-     :rules [:kinesis
-       [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
-       [:open_bracket :backslash] ;; [ -> \
-       [:close_bracket :slash] ;; ] -> /
-    ]}
+        ; {:des "Kinesis Advantage2 specific mappings"
+        ;  :rules [:kinesis
+        ;    [:non_us_backslash :!QWspacebar] ;; § -> emoji viewer
+        ;    [:open_bracket :backslash] ;; [ -> \
+        ;    [:close_bracket :slash] ;; ] -> /
+        ; ]}]]
 
     {:des "Ctrl Backspace -> Forward Delete"
      :rules [ :kybs
@@ -151,8 +150,21 @@
        [:!Ww :!Ww :terminals]
        [:!Tw :!Tw :terminals]
 
-       [:!Ww :!TOSdelete_or_backspace !:terminals]
-       [:!Tw :!TOSdelete_or_backspace !:terminals]
+    ;    [:!Ww :!TOSdelete_or_backspace !:terminals]
+    ;    [:!Tw :!TOSdelete_or_backspace !:terminals]
+
+       [:!Ww :!Odelete_or_backspace !:terminals]
+       [:!Tw :!Odelete_or_backspace !:terminals]
+    ]}
+
+    {:des "Ctrl + Shift + (K -> Delete until end of line"
+     :rules [ :kybs
+       [:!TCk :!Tk :terminals]
+       [:!TCk :!Tk :terminals]
+
+    ;; hm, this is actually  already reserverd for navigation stuffs
+    ;    [:!WSk :!Cdelete_forward !:terminals]
+    ;    [:!TSk :!Cdelete_forward !:terminals]
     ]}
 
     {:des "Shift -> {} or Shift"
@@ -164,25 +176,39 @@
     {:des "Cmd/Ctrl -> () : primary thumb keys"
      :rules [
        [:##left_command :##left_command :apple {:held :left_command :alone :!S9}]
-       [:##right_command :##right_control :apple {:held :right_control :alone :!S0}]
+       [:##right_command :##right_command :apple {:held :right_command :alone :!S0}]
 
-       [:##left_command :##left_command :kinesis {:held :left_command :alone :!S9}]
-       [:##right_control :##right_control :kinesis {:held :right_control :alone :!S0}]
+       [:##left_command :##left_command :ap2 {:held :left_command :alone :!S9}]
+       [:##right_command :##right_control :ap2 {:held :right_control :alone :!S0}]
 
-       [:##left_alt :##left_command [:tada68 :msft] {:held :left_command :alone :!S9}]
-       [:##right_alt :##right_control [:tada68 :msft] {:held :right_control :alone :!S0}]
+    ;    [:##left_command :##left_command :kinesis {:held :left_command :alone :!S9}]
+    ;    [:##right_control :##right_control :kinesis {:held :right_control :alone :!S0}]
+
+    ;    [:##left_alt :##left_command [:tada68 :msft] {:held :left_command :alone :!S9}]
+    ;    [:##right_alt :##right_control [:tada68 :msft] {:held :right_control :alone :!S0}]
     ]}
 
     {:des "Alt -> [] or Meh(Control Shift Option): secondary thumb keys"
      :rules [
-       [:##left_alt :##left_option :apple {:alone :open_bracket} ]
-       [:##right_alt :!TOleft_shift :apple {:alone :close_bracket} ]
+    ;    [:##left_option :##left_option :kybs {:alone :open_bracket} ]
+    ;    [:##right_option :!TOleft_shift :kybs {:alone :close_bracket} ]
 
-       [:##left_alt :##left_option :kinesis {:alone :open_bracket} ]
-       [:##right_gui :!TOleft_shift :kinesis {:alone :close_bracket} ]
+       [:##left_option :##left_option :apple {:alone :open_bracket} ]
+       [:##right_option :##right_option :apple {:alone :close_bracket} ]
 
-       [:##left_command :##left_option :msft {:alone :open_bracket} ]
-       [:##application :!TOleft_shift :msft {:alone :close_bracket} ]
+
+    ;; TODO: I need to rethink what to use the right ALT key on AP2 for
+       [:##left_alt :##left_option :ap2 {:alone :open_bracket} ]
+       [:##right_alt :!TOleft_shift :ap2 {:alone :close_bracket} ]
+
+
+
+
+    ;    [:##left_alt :##left_option :kinesis {:alone :open_bracket} ]
+    ;    [:##right_gui :!TOleft_shift :kinesis {:alone :close_bracket} ]
+
+    ;    [:##left_command :##left_option :msft {:alone :open_bracket} ]
+    ;    [:##application :!TOleft_shift :msft {:alone :close_bracket} ]
     ]}
 
     {:des "caps lock -> escape (alone) left_control (held) or ijkl-navigation"
@@ -212,15 +238,29 @@
         [:!TOSj :!OSleft_arrow]
         [:!TOSk :!OSdown_arrow]
         [:!TOSl :!OSright_arrow]
+
+        [:!Tn       :!Odelete_or_backspace]
+        [:!Tm       :delete_or_backspace]
+        [:!Tcomma   :delete_forward]
+        [:!Tperiod  :!Odelete_forward]
+        ; [:!Tslash   :!Cdelete_forward]
+        [:!TCn       :!Cdelete_or_backspace]
+        [:!TCm       :!Cdelete_or_backspace]
+
+        [:!Treturn_or_enter  :!Creturn_or_enter]
     ]}
 
     {:des "launch-mode: quick open applications"
      :rules [:launch-mode
-                [:y [:km "wm: def 1 major"] ] ;; Window move
-                [:u [:km "wm: def 1"] ] ;; Window move
-                [:i [:km "wm: def 2"] ] ;; Window move
-                [:o [:km "wm: def 3"] ] ;; Window move
-                [:p [:km "wm: def 3 major"] ] ;; Window move
+                ; [:o [:alfred "launch" "/Applications/Obsidian.app"] ]
+                [:c [:opena "Visual Studio Code"] ]
+                [:g [:opena "Google Chrome"] ]
+                [:n [:opena "Notion"] ]
+                [:o [:opena "Obsidian"] ]
+                [:t [:opena "Terminal"] ]
+                [:f [:open "notion://www.notion.so/Focus-8bbbaeccbbfe4717ba2f09cbef2fd2d8"] ]
+                [:a [:open "notion://www.notion.so/Align-b69282a23f1249a3a130b0a9e6890cda"] ]
+                [:l [:open "notion://www.notion.so/Learn-a86dd615ad194f758ebc648d2828d316"] ]
 
                 [:j :!QWspacebar ] ;; e(m)oji
                 [:k [:km "trigger macro by name"] ] ;; keyboard maestro
