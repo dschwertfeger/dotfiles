@@ -111,6 +111,7 @@ brew install duti # set default apps for file extensions
 # https://superuser.com/questions/273756/how-to-change-default-app-for-all-files-of-particular-file-type-through-terminal
 duti -s $(osascript -e 'id of app "Visual Studio Code"') .py all
 duti -s $(osascript -e 'id of app "Visual Studio Code"') .js all
+duti -s $(osascript -e 'id of app "VLC"') .mp4 all
 
 brew install git
 brew install git-lfs
