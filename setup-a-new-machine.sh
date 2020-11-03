@@ -42,6 +42,7 @@ cp -Rp \
     ~/Library/"Application Support"/Code \
     ~/Library/"Application Support"/espanso \
     ~/Library/"Application Support"/Evernote \
+    ~/Library/"Application Support"/Notion \
     ~/Library/"Application Support"/ObinsKit \
     ~/Library/"Application Support"/obsidian \
     ~/Library/"Application Support"/SourceTree \
@@ -118,7 +119,9 @@ cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Appl
 #   sublimetext's is in its Application Support folder
 
 # ~/Music and such
-cp -Rp ~/Music ~/migration
+cp -Rp ~/Music ~/migration # This might be a bit big to throw into a migraion folder?
+cp -Rp ~/Zotero ~/migration
+cp -Rp ~/"Calibre Library" ~/migration
 
 
 ### end of old machine backup
