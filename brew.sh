@@ -122,7 +122,7 @@ brew install lynx
 brew install p7zip
 brew install pigz
 brew install pv
-brew install python
+brew install python2
 brew install python3
 brew install rename
 brew install rhino
