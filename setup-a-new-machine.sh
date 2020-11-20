@@ -14,7 +14,7 @@ mkdir -p ~/migration/Library/Preferences/
 mkdir -p ~/migration/Library/Application Support/
 mkdir -p ~/migration/Library/Keychains
 mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
-mkdir -p ~/migration/U
+
 
 cd ~/migration
 
@@ -60,7 +60,7 @@ cp -Rp \
     ~/Library/"Application Support"/Code \
     ~/Library/"Application Support"/obsidian \
     ~/Library/"Application Support"/SourceTree \
-    ~/Library/"Application Support"/Spectacle \ # Shortcuts.json -> much better than in .macos
+    ~/Library/"Application Support"/Spectacle \
     ~/Library/"Application Support"/tastyworks \
     ~/Library/"Application Support"/zettlr \
     ~/Library/"Application Support"/Zotero \
@@ -133,6 +133,7 @@ cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Appl
 
 # ~/Music and such
 cp -Rp ~/Music ~/migration
+cp -Rp ~/"Calibre Library" ~/migration/home
 
 
 ### end of old machine backup
@@ -187,6 +188,10 @@ fi
 # (if your machine has /usr/local locked down (like google's), you can do this to place everything in ~/.homebrew
 mkdir $HOME/.homebrew && curl -L https://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C $HOME/.homebrew
 export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
+
+
+# if not, simply install homebrew
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 # install all the things
 ./brew.sh
