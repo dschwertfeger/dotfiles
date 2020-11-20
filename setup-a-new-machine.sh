@@ -11,10 +11,9 @@ mkdir -p ~/migration/home
 mkdir -p ~/migration/home/Library/"Application Support"/
 mkdir -p ~/migration/Library/"Application Support"/
 mkdir -p ~/migration/Library/Preferences/
-mkdir -p ~/migration/Library/Application Support/
 mkdir -p ~/migration/Library/Keychains
 mkdir -p ~/migration/rootLibrary/Preferences/SystemConfiguration/
-
+mkdir -p ~/migration/rootLibrary/Logs
 
 cd ~/migration
 
@@ -24,7 +23,6 @@ brew cask list              > cask-list.txt
 npm list -g --depth=0       > npm-g-list.txt
 yarn global ls --depth=0    > yarn-g-list.txt
 
-
 apm list --installed --bare > atom-package-list.txt
 # without version numbers (for latest version)
 apm list --installed --bare | grep '^[^@]\+' -o > atom-package-list.txt
@@ -33,38 +31,25 @@ apm list --installed --bare | grep '^[^@]\+' -o > atom-package-list.txt
 # then compare brew-list to what's in `brew.sh`
 #   comm <(sort brew-list.txt) <(sort brew.sh-cleaned-up)
 
-# Zotero
-cp -Rp ~/Zotero ~/migration/home
-cp -Rp ~/Library/"Application Support"/Zotero ~/migration/home/Library/"Application Support"/
-
-# Zettlr
-cp -Rp ~/Library/"Application Support"/zettlr ~/migration/home/Library/"Application Support"/
-
-# Obsidian
-cp -Rp ~/Library/"Application Support"/obsidian ~/migration/home/Library/"Application Support"/
-
-# Ableton
-cp -Rp ~/Library/"Application Support"/Ableton ~/migration/home/Library/"Application Support"/
-
-# Tastyworks
-cp -Rp ~/Library/"Application Support"/tastyworks ~/migration/home/Library/"Application Support"/
-
-# Audacity
-cp -Rp ~/Library/"Application Support"/audacity ~/migration/home/Library/"Application Support"/
-
 
 # Backup Application Support data
+# Shortcuts.json -> much better than in .macos
+    # ~/Library/"Application Support"/tastyworks \
 cp -Rp \
     ~/Library/"Application Support"/Ableton \
     ~/Library/"Application Support"/audacity \
     ~/Library/"Application Support"/Code \
+    ~/Library/"Application Support"/espanso \
+    ~/Library/"Application Support"/Evernote \
+    ~/Library/"Application Support"/Notion \
+    ~/Library/"Application Support"/ObinsKit \
     ~/Library/"Application Support"/obsidian \
     ~/Library/"Application Support"/SourceTree \
     ~/Library/"Application Support"/Spectacle \
     ~/Library/"Application Support"/tastyworks \
     ~/Library/"Application Support"/zettlr \
     ~/Library/"Application Support"/Zotero \
-        ~/migration/home/Library/"Application Support"/
+        ~/migration/Library/"Application Support"/
 
 # Backup Preferences data
 cp -Rp \
@@ -93,6 +78,8 @@ cp -Rp ~/Documents ~/migration
 cp -Rp ~/Library/Keychains/login.keychain-db Library/Keychains
 
 cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/ # wifi
+
+cp -Rp /Library/Logs/DiagnosticReports ~/migration/rootLibrary/Logs/
 
 cp -Rp ~/Library/Preferences/net.limechat.LimeChat.plist ~/migration/Library/Preferences/
 cp -Rp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration/Library/Preferences/
@@ -132,9 +119,9 @@ cp -Rp ~/Library/Application\ Support/Sublime\ Text\ * ~/migration/Library/"Appl
 #   sublimetext's is in its Application Support folder
 
 # ~/Music and such
-cp -Rp ~/Music ~/migration
-cp -Rp ~/"Calibre Library" ~/migration/home
-
+cp -Rp ~/Music ~/migration # This might be a bit big to throw into a migraion folder?
+cp -Rp ~/Zotero ~/migration
+cp -Rp ~/"Calibre Library" ~/migration
 
 ### end of old machine backup
 ################################################################################
