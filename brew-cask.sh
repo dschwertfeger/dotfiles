@@ -11,11 +11,13 @@ brew install caskroom/cask/brew-cask
 # brew tap caskroom/versions
 
 # daily
+brew cask install alfred
 brew cask install calibre
 brew cask install dropbox
 brew cask install evernote
 brew cask install flycut
 brew cask install google-backup-and-sync
+brew cask install karabiner-elements
 brew cask install notion
 brew cask install obsidian
 brew cask install rescuetime
