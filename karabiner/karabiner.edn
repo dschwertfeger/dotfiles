@@ -52,6 +52,7 @@
 :devices {
     :apple [{:vendor_id 1452, :product_id 832 }] ;; Apple Internal
     :ap2 [{:vendor_id 13, :product_id 0 }] ;; Anne Pro 2 (mechanical)
+    :ap2usb [{:vendor_id 1241, :product_id 41619 }] ;; Anne Pro 2 (mechanical)
     :tada68 [{:vendor_id 65261, :product_id 4611 }] ;; Tada68 (mechanical)
 
     :kybs [  ;; Default for all keyboards
@@ -108,6 +109,16 @@
 
     {:des "Anne Pro 2 specific mappings"
      :rules [:ap2
+       [:delete_forward :end]
+    ;    [:escape :grave_accent_and_tilde]
+    ;    [:!Sescape :!Sgrave_accent_and_tilde]
+    ;    [:!Rescape :!Rgrave_accent_and_tilde]
+       [:!Cescape :!Cgrave_accent_and_tilde]
+    ;    lasdff ladfkl asdkljf lk
+    ]}
+
+    {:des "Anne Pro 2 USB specific mappings"
+     :rules [:ap2usb
        [:delete_forward :end]
     ;    [:escape :grave_accent_and_tilde]
     ;    [:!Sescape :!Sgrave_accent_and_tilde]
@@ -253,11 +264,18 @@
     {:des "launch-mode: quick open applications"
      :rules [:launch-mode
                 ; [:o [:alfred "launch" "/Applications/Obsidian.app"] ]
+                [:b [:opena "Books"] ]
                 [:c [:opena "Visual Studio Code"] ]
+                [:d [:opena "Dictionary"] ]
+                [:e [:opena "Evernote"] ]
                 [:g [:opena "Google Chrome"] ]
+                [:i [:opena "iTunes"] ]
                 [:n [:opena "Notion"] ]
                 [:o [:opena "Obsidian"] ]
+                [:p [:opena "Preview"] ]
+                [:s [:opena "Slack"] ]
                 [:t [:opena "Terminal"] ]
+                [:z [:opena "Zotero"] ]
                 [:f [:open "notion://www.notion.so/Focus-8bbbaeccbbfe4717ba2f09cbef2fd2d8"] ]
                 [:a [:open "notion://www.notion.so/Align-b69282a23f1249a3a130b0a9e6890cda"] ]
                 [:l [:open "notion://www.notion.so/Learn-a86dd615ad194f758ebc648d2828d316"] ]
