@@ -28,6 +28,12 @@ export NVM_DIR="$HOME/.nvm"
 #   then eval "$(rbenv init -)";
 # fi
 
+# pyenv
+if which pyenv-virtualenv-init > /dev/null; then
+	eval "$(pyenv init -)";
+	eval "$(pyenv virtualenv-init -)";
+fi
+
 # z beats cd most of the time. `brew install z`
 zpath="$(brew --prefix)/etc/profile.d/z.sh"
 [ -s $zpath ] && source $zpath
