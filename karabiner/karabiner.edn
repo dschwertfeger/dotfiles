@@ -113,40 +113,41 @@
 
 
     {:des "Anne Pro 2 specific mappings"
-     :rules [:ap2
-       [:delete_forward :end]
-    ;    [:escape :grave_accent_and_tilde]
-    ;    [:!Sescape :!Sgrave_accent_and_tilde]
-    ;    [:!Rescape :!Rgrave_accent_and_tilde]
-       [:!Cescape :!Cgrave_accent_and_tilde]
+        :rules [:ap2
+            [:delete_forward :end]
+            ;; [:escape :grave_accent_and_tilde]
+            ;; [:!Sescape :!Sgrave_accent_and_tilde]
+            ;; [:!Rescape :!Rgrave_accent_and_tilde]
+            [:!Cescape :!Cgrave_accent_and_tilde]
     ]}
 
     {:des "Anne Pro 2 USB specific mappings"
-     :rules [:ap2usb
-       [:delete_forward :end]
-    ;    [:escape :grave_accent_and_tilde]
-    ;    [:!Sescape :!Sgrave_accent_and_tilde]
-    ;    [:!Rescape :!Rgrave_accent_and_tilde]
-       [:!Cescape :!Cgrave_accent_and_tilde]
+        :rules [:ap2usb
+            [:delete_forward :end]
+            ;; [:escape :grave_accent_and_tilde]
+            ;; [:!Sescape :!Sgrave_accent_and_tilde]
+            ;; [:!Rescape :!Rgrave_accent_and_tilde]
+            [:!Cescape :!Cgrave_accent_and_tilde]
     ]}
 
     {:des "GK61XS specific mappings"
-     :rules [:gk61
-       [:delete_forward :end]
-       [:!Cescape :!Cgrave_accent_and_tilde]
-    ]}
-    {:des "GK61XS USB specific mappings"
-     :rules [:gk61usb
-       [:delete_forward :end]
-       [:!Cescape :!Cgrave_accent_and_tilde]
+        :rules [:gk61
+            [:delete_forward :end]
+            [:!Cescape :!Cgrave_accent_and_tilde]
     ]}
 
+    {:des "GK61XS USB specific mappings"
+        :rules [:gk61usb
+            [:delete_forward :end]
+            [:!Cescape :!Cgrave_accent_and_tilde]
+   ]}
+
     {:des "Tada68 specific mappings"
-     :rules [:tada68
-       [:delete_forward :end]
-       [:escape :grave_accent_and_tilde]
-       [:grave_accent_and_tilde :home]
-       [:left_gui :left_alt]
+        :rules [:tada68
+            [:delete_forward :end]
+            [:escape :grave_accent_and_tilde]
+            [:grave_accent_and_tilde :home]
+            [:left_gui :left_alt]
     ]}
 
         ; [[{:des "Microsoft Ergonomic Sculpt Keyboard"
@@ -165,127 +166,126 @@
         ; ]}]]
 
     {:des "Ctrl Backspace -> Forward Delete"
-     :rules [ :kybs
-       [:!Wdelete_or_backspace :delete_forward]
-       [:!Tdelete_or_backspace :delete_forward]
-    ]}
+        :rules [ :kybs
+            [:!Wdelete_or_backspace :delete_forward]
+            [:!Tdelete_or_backspace :delete_forward]
+   ]}
 
     {:des "Ctrl W -> Delete last word"
-     :rules [ :kybs
-       [:!Ww :!Ww :terminals]
-       [:!Tw :!Tw :terminals]
+        :rules [ :kybs
+            [:!Tw :!Tw :terminals]
 
-    ;    [:!Ww :!TOSdelete_or_backspace !:terminals]
-    ;    [:!Tw :!TOSdelete_or_backspace !:terminals]
-
-       [:!Ww :!Odelete_or_backspace !:terminals]
-       [:!Tw :!Odelete_or_backspace !:terminals]
-    ]}
+            [:!Ww :!Odelete_or_backspace !:terminals]
+            [:!Tw :!Odelete_or_backspace !:terminals]
+            ;; [:!Ww :!TOSdelete_or_backspace !:terminals]
+            ;; [:!Tw :!TO1Sdelete_or_backspace !:terminals]
+   ]}
 
     {:des "Ctrl + Shift + (K -> Delete until end of line"
-     :rules [ :kybs
-       [:!TSk :!Tk :terminals]
-      ;;  [:!TC((k :!Tk :terminals]
+        :rules [ :kybs
+            [:!TSk :!Tk :terminals]
+            ;; [:!TC((k :!Tk :terminals]
 
-    ;; hm, this is actually  already reserverd for navigation stuffs
-      ;;   [:!WSk :!Tdelete_forward !:terminals]
-      ;;   [:!TSk :!Tdelete_forward !:terminals]
+            ;; hm, this is actually  already reserverd for navigation stuffs
+            ;; [:!WSk :!Tdelete_forward !:terminals]
+            ;; [:!TSk :!Tdelete_forward !:terminals]
     ]}
 
 
     {:des "Shift -> {} or Shift"
-     :rules [
-       [:##left_shift :left_shift :kybs {:alone :!Sopen_bracket} ]
-       [:##right_shift :right_shift :kybs {:alone :!Sclose_bracket} ]
+        :rules [
+            [:##left_shift :left_shift :kybs {:alone :!Sopen_bracket} ]
+            [:##right_shift :right_shift :kybs {:alone :!Sclose_bracket} ]
     ]}
 
     {:des "Cmd/Ctrl -> () : primary thumb keys"
-     :rules [
-      ;;  [:##left_command :##left_command :apple {:held :left_command :alone :!S9}]
-      ;;  [:##right_command :##right_command :apple {:held :right_command :alone :!S0}]
+        :rules [
+            [:##left_command :##left_command :kybs {:held :left_command :alone :!S9}]
+            [:##right_command :##right_control :kybs {:held :right_control :alone :!S0}]
 
-      ;;  [:##left_command :##left_command :ap2 {:held :left_command :alone :!S9}]
-      ;;  [:##right_command :##right_control :ap2 {:held :right_control :alone :!S0}]
+            ;; [:##left_command :##left_command :apple {:held :left_command :alone :!S9}]
+            ;; [:##right_command :##right_command :apple {:held :right_command :alone :!S0}]
 
-       [:##left_command :##left_command :kybs {:held :left_command :alone :!S9}]
-       [:##right_command :##right_control :kybs {:held :right_control :alone :!S0}]
+            ;; [:##left_command :##left_command :ap2 {:held :left_command :alone :!S9}]
+            ;; [:##right_command :##right_control :ap2 {:held :right_control :alone :!S0}]
+
     ]}
 
-   {:des "Alt -> [] or Meh(Control Shift Option): secondary thumb keys"
-      :rules [
-         [:##left_option :##left_option :kybs {:alone :open_bracket} ]
-         [:##right_option :!TOleft_shift :kybs {:alone :close_bracket} ]
+    {:des "Alt -> [] or Meh(Control Shift Option): secondary thumb keys"
+         :rules [
+            [:##left_option :##left_option :kybs {:alone :open_bracket} ]
+            [:##right_option :!TOleft_shift :kybs {:alone :close_bracket} ]
 
-         ;; [:##left_option :##left_option :apple {:alone :open_bracket} ]
-         ;; [:##right_option :##right_option :apple {:alone :close_bracket} ]
+            ;; [:##left_option :##left_option :apple {:alone :open_bracket} ]
+            ;; [:##right_option :##right_option :apple {:alone :close_bracket} ]
 
-         ;; TODO: I need to rethink what to use the right ALT key on AP2 for
-         ;; [:##left_alt :##left_option :ap2 {:alone :open_bracket} ]
-         ;; [:##right_alt :!TOleft_shift :ap2 {:alone :close_bracket} ]
+            ;; TODO: I need to rethink what to use the right ALT key on AP2 for
+            ;; [:##left_alt :##left_option :ap2 {:alone :open_bracket} ]
+            ;; [:##right_alt :!TOleft_shift :ap2 {:alone :close_bracket} ]
     ]}
 
-   {:des "caps lock -> escape (alone) left_control (held) or ijkl-navigation"
-     :rules [
-        [:##caps_lock :left_control nil {:alone :escape}]
-        [:!Ti   :up_arrow]
-        [:!Tj   :left_arrow]
-        [:!Tk   :down_arrow]
-        [:!Tl   :right_arrow]
-        [:!TSi  :!Sup_arrow]
-        [:!TSj  :!Sleft_arrow]
-        [:!TSk  :!Sdown_arrow]
-        [:!TSl  :!Sright_arrow]
-        [:!TCi  :!Cup_arrow]
-        [:!TCj  :!Cleft_arrow]
-        [:!TCk  :!Cdown_arrow]
-        [:!TCl  :!Cright_arrow]
-        [:!TCSi :!CSup_arrow]
-        [:!TCSj :!CSleft_arrow]
-        [:!TCSk :!CSdown_arrow]
-        [:!TCSl :!CSright_arrow]
-        [:!TOi  :!Oup_arrow]
-        [:!TOj  :!Oleft_arrow]
-        [:!TOk  :!Odown_arrow]
-        [:!TOl  :!Oright_arrow]
-        [:!TOSi :!OSup_arrow]
-        [:!TOSj :!OSleft_arrow]
-        [:!TOSk :!OSdown_arrow]
-        [:!TOSl :!OSright_arrow]
+    {:des "caps lock -> escape (alone) left_control (held) or ijkl-navigation"
+        :rules [
+            [:##caps_lock :left_control nil {:alone :escape}]
+            [:!Ti   :up_arrow]
+            [:!Tj   :left_arrow]
+            [:!Tk   :down_arrow]
+            [:!Tl   :right_arrow]
+            [:!TSi  :!Sup_arrow]
+            [:!TSj  :!Sleft_arrow]
+            [:!TSk  :!Sdown_arrow]
+            [:!TSl  :!Sright_arrow]
+            [:!TCi  :!Cup_arrow]
+            [:!TCj  :!Cleft_arrow]
+            [:!TCk  :!Cdown_arrow]
+            [:!TCl  :!Cright_arrow]
+            [:!TCSi :!CSup_arrow]
+            [:!TCSj :!CSleft_arrow]
+            [:!TCSk :!CSdown_arrow]
+            [:!TCSl :!CSright_arrow]
+            [:!TOi  :!Oup_arrow]
+            [:!TOj  :!Oleft_arrow]
+            [:!TOk  :!Odown_arrow]
+            [:!TOl  :!Oright_arrow]
+            [:!TOSi :!OSup_arrow]
+            [:!TOSj :!OSleft_arrow]
+            [:!TOSk :!OSdown_arrow]
+            [:!TOSl :!OSright_arrow]
 
-        [:!Tn       :!Odelete_or_backspace]
-        [:!Tm       :delete_or_backspace]
-        [:!Tcomma   :delete_forward]
-        [:!Tperiod  :!Odelete_forward]
-        ; [:!Tslash   :!Cdelete_forward]
-        [:!TCn       :!Cdelete_or_backspace]
-        [:!TCm       :!Cdelete_or_backspace]
+            [:!Tn       :!Odelete_or_backspace]
+            [:!Tm       :delete_or_backspace]
+            [:!Tcomma   :delete_forward]
+            [:!Tperiod  :!Odelete_forward]
+            ; [:!Tslash   :!Cdelete_forward]
+            [:!TCn       :!Cdelete_or_backspace]
+            [:!TCm       :!Cdelete_or_backspace]
 
-        [:!Treturn_or_enter  :!Creturn_or_enter]
+            [:!Treturn_or_enter  :!Creturn_or_enter]
+    ]}
+
+    {:des "launch-mode: quick open applications"
+        :rules [:launch-mode
+               ; [:o [:alfred "launch" "/Applications/Obsidian.app"] ]
+               [:b [:opena "Books"] ]
+               [:c [:opena "Visual Studio Code"] ]
+               [:d [:opena "Dictionary"] ]
+               [:e [:opena "Evernote"] ]
+               [:f [:opena "Finder"] ]
+               [:g [:opena "Google Chrome"] ]
+               [:k [:opena "Calendar"] ]
+               [:n [:opena "Notion"] ]
+               [:m [:opena "Music"] ]
+               [:o [:opena "Obsidian"] ]
+               [:p [:opena "Preview"] ]
+               [:s [:opena "Slack"] ]
+               [:t [:opena "Terminal"] ]
+               [:x [:opena "Calibre"] ]
+               [:z [:opena "Zotero"] ]
+
+               [:j :!QWspacebar ] ;; e(m)oji
+               [:k [:km "trigger macro by name"] ] ;; keyboard maestro
+               [:l :!CSv ] ;; c(l)ipboard history
    ]}
-
-   {:des "launch-mode: quick open applications"
-     :rules [:launch-mode
-                ; [:o [:alfred "launch" "/Applications/Obsidian.app"] ]
-                [:b [:opena "Books"] ]
-                [:c [:opena "Visual Studio Code"] ]
-                [:d [:opena "Dictionary"] ]
-                [:e [:opena "Evernote"] ]
-                [:f [:opena "Finder"] ]
-                [:g [:opena "Google Chrome"] ]
-                [:k [:opena "Calendar"] ]
-                [:n [:opena "Notion"] ]
-                [:m [:opena "Music"] ]
-                [:o [:opena "Obsidian"] ]
-                [:p [:opena "Preview"] ]
-                [:s [:opena "Slack"] ]
-                [:t [:opena "Terminal"] ]
-                [:x [:opena "Calibre"] ]
-                [:z [:opena "Zotero"] ]
-
-                [:j :!QWspacebar ] ;; e(m)oji
-                [:k [:km "trigger macro by name"] ] ;; keyboard maestro
-                [:l :!CSv ] ;; c(l)ipboard history
-    ]}
 
 ] ;; main list
 
