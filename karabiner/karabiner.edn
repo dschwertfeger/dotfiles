@@ -18,7 +18,7 @@
     ;; !! | command + control + optional + shift (hyper)
 
     ;; to understand better how modifiers work in karabiner
-    ;; karabiner definition of mandatory and optional
+    ;; karabiner definition of mandatory and *fgdffgsdgrtfdgdfsgghsdfgdfgfsdgfsdgsdfgfgdsfgdfggsdfggjoptional
     ;; https://karabiner-elements.pqrs.org/docs/json/complex-modifications-manipulator-definition/from/modifiers/
 
 
@@ -30,7 +30,7 @@
 
 :profiles {
     :Default {  :default true
-                :sim     50    ;; simultaneous_threshold_milliseconds (def: 50)
+                :sim     50     ;; simultaneous_threshold_milliseconds (def: 50)
                                 ;; keys need to be pressed within this threshold to be considered simultaneous
                 :delay   500    ;; to_delayed_action_delay_milliseconds (def: 500)
                                 ;; basically it means time after which the key press is count delayed
@@ -54,13 +54,18 @@
     :ap2 [{:vendor_id 13, :product_id 0 }] ;; Anne Pro 2 (mechanical)
     :ap2usb [{:vendor_id 1241, :product_id 41619 }] ;; Anne Pro 2 (mechanical)
     :tada68 [{:vendor_id 65261, :product_id 4611 }] ;; Tada68 (mechanical)
+    :gk61usb [{:vendor_id 7847, :product_id 2311 }] ;; GK61XS (mechanical)
+    :gk61 [{:vendor_id 2652, :product_id 17666 }] ;; GK61XS (mechanical)
 
     :kybs [  ;; Default for all keyboards
         {:vendor_id 1452, :product_id 832}
         {:vendor_id 13, :product_id 0 }
-        {:vendor_id 65261, :product_id 4611 }
+        {:vendor_id 65261, :prod0uct_id 4611 }
+        {:vendor_id 2652, :product_id 17666 }
+        {:vendor_id 7847, :product_id 2311 }
+        {:vendor_id 2652, :product_id 17666 }
     ]
-    ; :kybs [ :apple, :ap2, :tada68 ] ;; hmm, shouldn't this work somehow?
+   ;;  :kybs [ :apple, :ap2, :tada68, :gk61 ] ;; hmm, shouldn't this work somehow?
 
 } ;; devices
 
@@ -114,7 +119,6 @@
     ;    [:!Sescape :!Sgrave_accent_and_tilde]
     ;    [:!Rescape :!Rgrave_accent_and_tilde]
        [:!Cescape :!Cgrave_accent_and_tilde]
-    ;    lasdff ladfkl asdkljf lk
     ]}
 
     {:des "Anne Pro 2 USB specific mappings"
@@ -124,7 +128,17 @@
     ;    [:!Sescape :!Sgrave_accent_and_tilde]
     ;    [:!Rescape :!Rgrave_accent_and_tilde]
        [:!Cescape :!Cgrave_accent_and_tilde]
-    ;    lasdff ladfkl asdkljf lk
+    ]}
+
+    {:des "GK61XS specific mappings"
+     :rules [:gk61
+       [:delete_forward :end]
+       [:!Cescape :!Cgrave_accent_and_tilde]
+    ]}
+    {:des "GK61XS USB specific mappings"
+     :rules [:gk61usb
+       [:delete_forward :end]
+       [:!Cescape :!Cgrave_accent_and_tilde]
     ]}
 
     {:des "Tada68 specific mappings"
@@ -170,13 +184,14 @@
 
     {:des "Ctrl + Shift + (K -> Delete until end of line"
      :rules [ :kybs
-       [:!TCk :!Tk :terminals]
-       [:!TCk :!Tk :terminals]
+       [:!TSk :!Tk :terminals]
+      ;;  [:!TC((k :!Tk :terminals]
 
     ;; hm, this is actually  already reserverd for navigation stuffs
-    ;    [:!WSk :!Cdelete_forward !:terminals]
-    ;    [:!TSk :!Cdelete_forward !:terminals]
+      ;;   [:!WSk :!Tdelete_forward !:terminals]
+      ;;   [:!TSk :!Tdelete_forward !:terminals]
     ]}
+
 
     {:des "Shift -> {} or Shift"
      :rules [
@@ -186,43 +201,30 @@
 
     {:des "Cmd/Ctrl -> () : primary thumb keys"
      :rules [
-       [:##left_command :##left_command :apple {:held :left_command :alone :!S9}]
-       [:##right_command :##right_command :apple {:held :right_command :alone :!S0}]
+      ;;  [:##left_command :##left_command :apple {:held :left_command :alone :!S9}]
+      ;;  [:##right_command :##right_command :apple {:held :right_command :alone :!S0}]
 
-       [:##left_command :##left_command :ap2 {:held :left_command :alone :!S9}]
-       [:##right_command :##right_control :ap2 {:held :right_control :alone :!S0}]
+      ;;  [:##left_command :##left_command :ap2 {:held :left_command :alone :!S9}]
+      ;;  [:##right_command :##right_control :ap2 {:held :right_control :alone :!S0}]
 
-    ;    [:##left_command :##left_command :kinesis {:held :left_command :alone :!S9}]
-    ;    [:##right_control :##right_control :kinesis {:held :right_control :alone :!S0}]
-
-    ;    [:##left_alt :##left_command [:tada68 :msft] {:held :left_command :alone :!S9}]
-    ;    [:##right_alt :##right_control [:tada68 :msft] {:held :right_control :alone :!S0}]
+       [:##left_command :##left_command :kybs {:held :left_command :alone :!S9}]
+       [:##right_command :##right_control :kybs {:held :right_control :alone :!S0}]
     ]}
 
-    {:des "Alt -> [] or Meh(Control Shift Option): secondary thumb keys"
-     :rules [
-    ;    [:##left_option :##left_option :kybs {:alone :open_bracket} ]
-    ;    [:##right_option :!TOleft_shift :kybs {:alone :close_bracket} ]
+   {:des "Alt -> [] or Meh(Control Shift Option): secondary thumb keys"
+      :rules [
+         [:##left_option :##left_option :kybs {:alone :open_bracket} ]
+         [:##right_option :!TOleft_shift :kybs {:alone :close_bracket} ]
 
-       [:##left_option :##left_option :apple {:alone :open_bracket} ]
-       [:##right_option :##right_option :apple {:alone :close_bracket} ]
+         ;; [:##left_option :##left_option :apple {:alone :open_bracket} ]
+         ;; [:##right_option :##right_option :apple {:alone :close_bracket} ]
 
-
-    ;; TODO: I need to rethink what to use the right ALT key on AP2 for
-       [:##left_alt :##left_option :ap2 {:alone :open_bracket} ]
-       [:##right_alt :!TOleft_shift :ap2 {:alone :close_bracket} ]
-
-
-
-
-    ;    [:##left_alt :##left_option :kinesis {:alone :open_bracket} ]
-    ;    [:##right_gui :!TOleft_shift :kinesis {:alone :close_bracket} ]
-
-    ;    [:##left_command :##left_option :msft {:alone :open_bracket} ]
-    ;    [:##application :!TOleft_shift :msft {:alone :close_bracket} ]
+         ;; TODO: I need to rethink what to use the right ALT key on AP2 for
+         ;; [:##left_alt :##left_option :ap2 {:alone :open_bracket} ]
+         ;; [:##right_alt :!TOleft_shift :ap2 {:alone :close_bracket} ]
     ]}
 
-    {:des "caps lock -> escape (alone) left_control (held) or ijkl-navigation"
+   {:des "caps lock -> escape (alone) left_control (held) or ijkl-navigation"
      :rules [
         [:##caps_lock :left_control nil {:alone :escape}]
         [:!Ti   :up_arrow]
@@ -259,26 +261,26 @@
         [:!TCm       :!Cdelete_or_backspace]
 
         [:!Treturn_or_enter  :!Creturn_or_enter]
-    ]}
+   ]}
 
-    {:des "launch-mode: quick open applications"
+   {:des "launch-mode: quick open applications"
      :rules [:launch-mode
                 ; [:o [:alfred "launch" "/Applications/Obsidian.app"] ]
                 [:b [:opena "Books"] ]
                 [:c [:opena "Visual Studio Code"] ]
                 [:d [:opena "Dictionary"] ]
                 [:e [:opena "Evernote"] ]
+                [:f [:opena "Finder"] ]
                 [:g [:opena "Google Chrome"] ]
-                [:i [:opena "iTunes"] ]
+                [:k [:opena "Calendar"] ]
                 [:n [:opena "Notion"] ]
+                [:m [:opena "Music"] ]
                 [:o [:opena "Obsidian"] ]
                 [:p [:opena "Preview"] ]
                 [:s [:opena "Slack"] ]
                 [:t [:opena "Terminal"] ]
+                [:x [:opena "Calibre"] ]
                 [:z [:opena "Zotero"] ]
-                [:f [:open "notion://www.notion.so/Focus-8bbbaeccbbfe4717ba2f09cbef2fd2d8"] ]
-                [:a [:open "notion://www.notion.so/Align-b69282a23f1249a3a130b0a9e6890cda"] ]
-                [:l [:open "notion://www.notion.so/Learn-a86dd615ad194f758ebc648d2828d316"] ]
 
                 [:j :!QWspacebar ] ;; e(m)oji
                 [:k [:km "trigger macro by name"] ] ;; keyboard maestro
