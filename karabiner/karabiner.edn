@@ -1,4 +1,6 @@
 {
+    ;; https://github.com/yqrashawn/GokuRakuJoudo/blob/master/tutorial.md
+
     ;; !  | means mandatory -   modifier(s) alone when pressend change behavior
     ;; #  | means optional  -   modifiers are optional (but atleast one necessary)
 
@@ -75,6 +77,9 @@
 ;; layers works too, but only recommended for non-typing keys like . or tab
 ;; or keys like z which are used less often
 :simlayers {
+    :period-mode {:key :period}
+    :window-mode {:key :w}
+    :desktop-mode {:key :d}
 } ;; simlayers
 
 :applications {
@@ -84,6 +89,23 @@
 
 ;; main contains multiple manipulators
 :main [
+
+    {:des "window-mode"
+        :rules [ :window-mode
+            [:j :!TOCleft_arrow]
+            [:l :!TOCright_arrow]
+            [:i :!TOCup_arrow]
+            [:k :!TOCdown_arrow]
+            [:c :!TOCc]
+            [:m :!TOCm]
+        ]]
+    }
+    ;; Example
+    {:des "period mode"
+        :rules [[:d :!S9 :period-mode] ;; .d insert (
+                [:f :!S0 :period-mode] ;; .f insert )
+                [:a [:!Sgrave_accent_and_tilde :slash] :period-mode] ;; .a insert ~/
+                [:s [:period :!S8] :period-mode]]} ;; .s insert .*
 
     ;; each manipulator has a description and multiple rules
 
@@ -114,10 +136,11 @@
             [:!Cescape :!Cgrave_accent_and_tilde]
     ]}
 
-    {:des "GK61XS USB specific mappings"
+    {:des "GK61XS specific mappings"
         :rules [ :gk61
             [:delete_forward :end]
             [:!Cescape :!Cgrave_accent_and_tilde]
+            [:##caps_lock :left_control nil {:alone :escape}]
             ;; [:left_command :left_option]
             ;; [:left_option :left_command]
     ]}
